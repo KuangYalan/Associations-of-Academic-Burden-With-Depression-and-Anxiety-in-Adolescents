@@ -24,7 +24,7 @@ model1 <- lm(depression_std ~ sex + age + study_std, data = data)
 #step2
 model2 <- lm(depression_std ~ sex + age + study_std + Grit_std, data = data)
 #Step3
-model3 <- lm(depression_std ~ sex + age + study_std  Grit_std, data = data)
+model3 <- lm(depression_std ~ sex + age + study_std * Grit_std, data = data)
 
 anova(model1, model2, model3)
 summary (model1)
