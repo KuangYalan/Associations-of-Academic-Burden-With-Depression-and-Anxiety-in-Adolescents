@@ -23,7 +23,7 @@ PROCESS(data, y="depression_std", x="study_std", mods='RenzhicP_std', covs = c('
 model1 <- lm(depression_std ~ sex + age + study_std, data = data)
 #step2
 model2 <- lm(depression_std ~ sex + age + study_std + Grit_std, data = data)
-#Step3:协变量+X+w+Xxw(交互项)
+#Step3
 model3 <- lm(depression_std ~ sex + age + study_std  Grit_std, data = data)
 
 anova(model1, model2, model3)
@@ -37,8 +37,6 @@ summary(model)
 
 #####Chain regulation
 modl <- lm(depression_std ~ study_std*RenzhicP_std, data = data)
-#Step2:M1影响M2的调节强度
-#构造交互项:X:M2:M1
 data$XM2 <- with(data, study_std*RenzhicP_std)
 model_chain <- lm(depression_std ~ study_std + grit_std + RenzhicP_std + XM2 + XM2:grit_std, data = data)
 summary(model_chain)
